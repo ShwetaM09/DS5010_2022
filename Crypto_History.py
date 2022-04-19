@@ -9,8 +9,19 @@ import time, requests, pandas, lxml
 from lxml import html
 
 class CryptoHistory:
+    """
+	Class CryptoHistory will return the historic data (price) of desired 
+    Cryptocurrencies for the time span requested by user in the form of CSV 
+    file saved at their runtime path.
     
+	"""
     def format_date(date_datetime):
+        
+        """
+    	This method takes the start and end date from the user and converts 
+        it into seconds format and returns the same.
+        
+    	"""
         date_timetuple = date_datetime.timetuple()
         date_mktime = time.mktime(date_timetuple)
         date_int = int(date_mktime)
@@ -18,11 +29,25 @@ class CryptoHistory:
         return date_str
     
     def subdomain(symbol, start, end, filter='history'):
-         subdoma="/quote/{0}/history?period1={1}&period2={2}&interval=1d&filter={3}&frequency=1d"
-         subdomain = subdoma.format(symbol, start, end, filter)
-         return subdomain
+        
+        """
+    	This method takes the start and end date (seconds format) and
+        symbol(Crypto Currency input by user) and uses this to create the subdomain
+        of the URL used for API Call.
+        
+        Returns - subdomain URL
+    	"""
+        subdoma="/quote/{0}/history?period1={1}&period2={2}&interval=1d&filter={3}&frequency=1d"
+        subdomain = subdoma.format(symbol, start, end, filter)
+        return subdomain
+         
 
     def header_function(subdomain):
+        """
+    	Creates header used for API call to yfinance for the historic price data.
+        
+        Returns - hdrs (header details)
+    	"""
         hdrs =  {"authority": "finance.yahoo.com",
                   "method": "GET",
                   "path": subdomain, #path key assigned as subdomain
@@ -42,6 +67,12 @@ class CryptoHistory:
         return hdrs
     
     def scrape_page(url, header):
+        """
+    	Sends request to yfinance with the url and header data and receives the 
+        data in html format which is parsed and converted to table format.
+        
+        Returns - dataframe of the requested info.
+    	"""
         pan = requests.get(url,headers=header)
         element_html = html.fromstring(pan.content)
         table = element_html.xpath('//table')
@@ -62,7 +93,7 @@ if __name__ == "__main__":
     base_url = 'https://finance.yahoo.com'
     url = base_url + r
     data=CryptoHistory.scrape_page(url,head)
-    data[0].to_csv('Requested_CryptoPr.csv')
+    data[0].to_csv('Requested_CryptoPr.csv') ##Convert the dataframe to CSV file and store in path.
     
 
     
