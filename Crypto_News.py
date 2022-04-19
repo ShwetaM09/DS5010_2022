@@ -23,5 +23,3 @@ class Crypto_News:
   def crypto_news(self,crypto_name):
     return yf.Ticker(crypto_name).news
 
-crypto=Crypto_News()
-crypto.crypto_news("BTC")
