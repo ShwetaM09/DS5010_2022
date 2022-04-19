@@ -21,7 +21,7 @@ class CryptoPredict:
   def __init__(self):
     self.api_token = "625ce48f84b4d3.50518364"
   
-  def printing(self):
+  def API(self):
     return self.api_token
 
   def pricePredict(self,market_type,end_date):
