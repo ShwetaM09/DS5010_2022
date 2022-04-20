@@ -1,7 +1,6 @@
 Title: Market Analysis of Data for Cryptocurrencies (MADC)
 
 Authors:
-
 Shagun Saboo, Amritanj Ayush, Parthasarathy Murugesan, Shweta Mishra
 
 Summary: 
@@ -13,7 +12,10 @@ With this idea in mind, we're developing a Python package that will collect data
 Proposed Design:
 
 The package aims to be a one-stop shop for cryptocurrency market statistics. The classes will be defined as below, underneath which sub-functions would be defined to implement to provide the package’s intended functionality.
-•	class CryptoHistory: This class offers methods for generating historical market data snapshots depending on the selected crypto currency and time range. The functions defined in this class include:
+
+•	class CryptoHistory:
+
+This class offers methods for generating historical market data snapshots depending on the selected crypto currency and time range. The functions defined in this class include:
 ·	__init__() -> To verify the date and period instance
 ·	__str__() -> Format and return the historical data in String format
 ·	g_snap() ->  Provide historical snapshot of information regarding the price and volume distribution  of the specified cryptocurrency.
