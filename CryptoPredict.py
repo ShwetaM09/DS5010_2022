@@ -17,6 +17,10 @@ import datetime
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 class CryptoPredict:
+   """
+   Class CryptoPredict is used to predict the Crypto Currency pair mentioned by the user 
+   based on the future time frame mentioned by the user who uses this package.
+   """
   api_token = ""
   def __init__(self):
     self.api_token = "625ce48f84b4d3.50518364"
@@ -24,7 +28,13 @@ class CryptoPredict:
   def API(self):
     return self.api_token
 
+  #Function to predict the futuristic price of the Crypto currency pair using SARIMAX model.
   def pricePredict(self,market_type,end_date):
+    """
+    Params:Crypto Pairs as String, end_date in timeframe format
+    Function Usage: to predict the crypto currency pairs futuristic price based on the mentioned end date
+    Return Value: Returns a list of future prices based on the time frame mentioned.
+    """
     response=requests.get(f'https://eodhistoricaldata.com/api/eod/{market_type}.CC?api_token={self.api_token}&order=d&fmt=json')
     json_data=json.loads(response.content)
     df=pd.DataFrame(json_data)
@@ -37,8 +47,12 @@ class CryptoPredict:
     start_date = df_set.last_valid_index()
     pred = results_ARIMA.predict(start=str(start_date), end=end_date, dynamic=True)
     return pred
-
+  #Function used to viualise the prediction based on the timeframe mentioned by the user.
   def visualizePredict(self,pred):
+    """
+    Params: List of predicted price for the mentioned crypto currency pair
+    Function Usage: To visualise the predicted price against the mentioned timeframe
+    """
     plt.figure(figsize=(30,10))
     plt.plot(pred, label='prediction')
     plt.ylabel("Price")
