@@ -14,7 +14,11 @@ import pandas, csv
 
 class topcrypto:
     
+    '''This class would give market capitalization-based pricing and volume information for the top cryptocurrencies on the global market.'''
+    
     def __init__(self):
+        
+        '''Initiliazing parameters to retrieve data from CoinMarketCap API'''
        
         self.url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
         self.headers = {'Accepts': 'application/json', 
@@ -25,10 +29,15 @@ class topcrypto:
     
     def topcoins(self, limit):
         
+        ''' topcoins(limit) returns market capitalization-based pricing and volume information for the top cryptocurrencies on the global market. 
+        Parameter 'limit' is user-defined. Eg: limit = 10 returns data for Top 10 cryptocurrencies ranked by market-cap '''
+        
         url = self.url
         parameters = {'start': '1', 'limit': limit}
         r = self.session.get(url, params = parameters)
         self.data = r.json()['data']
+        
+        ''' Above code chunk sends a request to the API and retrieves data to Python'''
         
         finalTable = []
         for temp in self.data:
@@ -46,10 +55,14 @@ class topcrypto:
                     row[temp2] = temp[temp2]
             finalTable.append(row)
             
+            '''Above code chunk parses the JSON file retrieved by the API and presents it to the user in a readable format'''
+            
         final = pandas.DataFrame(finalTable)
         final.index+=1
         final.to_csv('Top_Cryptocurrency_Data.csv')
         print("Requested file has been saved as 'Top_Cryptocurrency_Data.csv'")
+        
+        ''' Above code chunk converts the data into a pandas df and saves it as a CSV to the user's machine'''
        
         
 o = topcrypto()
