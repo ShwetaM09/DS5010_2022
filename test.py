@@ -4,7 +4,7 @@
 # In[14]:
 
 
-import import_ipynb
+import ipynb_checkpoints
 from TopCrypto import topcrypto
 from Crypto_History import CryptoHistory
 from CryptoCurrent import Cryptocurrent
@@ -16,7 +16,6 @@ from lxml import html
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 import requests, pandas
-
 
 # In[5]:
 
