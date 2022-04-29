@@ -30,7 +30,7 @@ class CryptoPredict:
    def pricePredict(self,market_type,end_date):
       """
       Params:Crypto Pairs as String, end_date in timeframe format
-      Function Usage: to predict the crypto currency pairs futuristic price based on the mentioned end date
+      Function Usage: To predict the crypto currency pairs futuristic price based on the mentioned end date
       Return Value: Returns a list of future prices based on the time frame mentioned.
       """
       response=requests.get(f'https://eodhistoricaldata.com/api/eod/{market_type}.CC?api_token={self.api_token}&order=d&fmt=json')
