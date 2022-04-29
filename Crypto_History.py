@@ -10,7 +10,7 @@ from lxml import html
 
 class CryptoHistory:
     """
-	Class CryptoHistory will return the historic data (price) of desired 
+    Class CryptoHistory will return the historic data (price) of desired 
     Cryptocurrencies for the time span requested by user in the form of CSV 
     file saved at their runtime path.
     
