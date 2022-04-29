@@ -1,6 +1,7 @@
 
 import yfinance as yf
 import pandas as pd
+
 class Crypto_News:
     def crypto_news(self,crypto_name):
         return yf.Ticker(crypto_name).news
