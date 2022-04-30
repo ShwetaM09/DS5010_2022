@@ -53,7 +53,7 @@ Anticipated Challenges:
 
 More helper functions would be necessary than those listed above, as well as a comparison of different machine learning models to choose the most efficient model or the construction of an ensemble model. The APIs we intend to use must be reliable, otherwise we may be obliged to pay for a membership or look for alternatives in the future.
 
-
+Website link:https://sabooshagun.github.io/madc/
 For downloading the packages required use the following command: pip install -r requirements.txt
 
 
